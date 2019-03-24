@@ -8,6 +8,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -58,10 +59,11 @@ app.get('/getDreams', function(request, response) {
 });
 
 app.post('/', function(req, res){
+  // respond to slack url verification for app setup
   if (req.body.type === "url_verification"){
     console.log(req.body.challenge);
     res.set('Content-Type', 'text/plain');
-    res.end(req.body.challenge);
+    res.send(req.body.challenge);
   }
 });
 
