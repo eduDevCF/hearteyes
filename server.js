@@ -57,6 +57,14 @@ app.get('/getDreams', function(request, response) {
   });
 });
 
+app.post('/', function(req, res){
+  if (req.body.type === "url_verification"){
+    console.log(req.body.challenge);
+    res.set('Content-Type', 'text/plain');
+    res.end(req.body.challenge);
+  }
+});
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
